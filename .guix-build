@@ -1,0 +1,16 @@
+# Start a guix container to build this tool. Make sure there is a recent guix in the path
+#
+# After startup you may need to set export CC=clang or gcc and the LIB path to point
+# to gcc and clang libs, e.g.
+#
+# . .guix-build
+# export CC=clang
+# export LIB_CLANGPATH=/gnu/store/w3nzdwg7fx6442qjfscds5va11znxi0b-clang-10.0.0/lib
+# cargo build
+
+# or just cargo for the Rust part
+echo env CC=gcc cargo build --release
+
+guix shell -C -D --network guix rust python python-pip nss-certs openssl git gcc-toolchain clang vim which python-cffi rust-cargo coreutils glibc:static --share=$HOME/.cargo
+
+
